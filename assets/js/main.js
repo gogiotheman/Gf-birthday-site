@@ -340,21 +340,21 @@ function initActivitiesPage() {
   const preview = document.getElementById("messagePreview");
   const sendWhatsapp = document.getElementById("sendWhatsapp");
   const sendSms = document.getElementById("sendSms");
-  const sendRow = document.getElementById("sendRow");
-  const noPhoneHint = document.getElementById("noPhoneHint");
+  const recipientInput = document.getElementById("recipientNumber");
+  const phoneHint = document.getElementById("phoneHint");
   const customOption = document.getElementById("customOption");
   const customInput = document.getElementById("customIdeaInput");
   const selected = new Set();
+  const recipientStorageKey = "gift-whatsapp-recipient";
   const customLabel = cfg.customOptionLabel || "something else";
   const customPlaceholder = cfg.customOptionPlaceholder || "tell me what you had in mind...";
   let customActive = false;
 
   if (customInput) customInput.placeholder = customPlaceholder;
-
-  const hasPhone = !!(cfg.phoneNumber && cfg.phoneNumber.trim());
-  if (!hasPhone) {
-    sendRow.classList.add("hidden");
-    noPhoneHint.classList.remove("hidden");
+  try {
+    recipientInput.value = localStorage.getItem(recipientStorageKey) || "";
+  } catch (e) {
+    // Storage may be unavailable in restricted browser contexts.
   }
 
   function getSelectedItems() {
@@ -372,22 +372,32 @@ function initActivitiesPage() {
 
   function updatePreview() {
     const items = getSelectedItems();
-    if (items.length === 0) {
+    const digits = recipientInput.value.replace(/[^\d]/g, "");
+    const validPhone = digits.length >= 7 && digits.length <= 15;
+    const canSend = items.length > 0 && validPhone;
+
+    if (items.length > 0) {
+      preview.textContent = `“${buildMessage()}”`;
+      preview.classList.add("is-visible");
+    } else {
       preview.textContent = "";
       preview.classList.remove("is-visible");
-      sendWhatsapp.classList.add("is-disabled");
-      sendSms.disabled = true;
-      return;
     }
-    preview.textContent = `“${buildMessage()}”`;
-    preview.classList.add("is-visible");
-    if (hasPhone) {
-      const digits = cfg.phoneNumber.replace(/[^\d]/g, "");
+
+    if (canSend) {
       const msg = encodeURIComponent(buildMessage());
       sendWhatsapp.href = `https://wa.me/${digits}?text=${msg}`;
-      sendWhatsapp.classList.remove("is-disabled");
-      sendSms.disabled = false;
+    } else {
+      sendWhatsapp.removeAttribute("href");
     }
+    sendWhatsapp.classList.toggle("is-disabled", !canSend);
+    sendSms.disabled = !canSend;
+
+    phoneHint.textContent = validPhone
+      ? ""
+      : digits.length === 0
+        ? "Enter a recipient number to enable sending."
+        : "Use a valid number with country code (7–15 digits).";
   }
 
   cfg.items.forEach((label) => {
@@ -439,13 +449,25 @@ function initActivitiesPage() {
     if (sendWhatsapp.classList.contains("is-disabled")) e.preventDefault();
   });
 
-  if (hasPhone) {
-    sendSms.addEventListener("click", () => {
-      const digits = cfg.phoneNumber.replace(/[^\d+]/g, "");
-      const msg = encodeURIComponent(buildMessage());
-      window.location.href = `sms:${digits}?&body=${msg}`;
-    });
-  }
+  sendSms.addEventListener("click", () => {
+    const digits = recipientInput.value.replace(/[^\d]/g, "");
+    if (digits.length < 7 || digits.length > 15 || getSelectedItems().length === 0) return;
+    const msg = encodeURIComponent(buildMessage());
+    window.location.href = `sms:+${digits}?body=${msg}`;
+  });
+
+  recipientInput.addEventListener("input", () => {
+    try {
+      if (recipientInput.value.trim()) {
+        localStorage.setItem(recipientStorageKey, recipientInput.value);
+      } else {
+        localStorage.removeItem(recipientStorageKey);
+      }
+    } catch (e) {
+      // The form still works when browser storage is unavailable.
+    }
+    updatePreview();
+  });
 
   updatePreview();
 }

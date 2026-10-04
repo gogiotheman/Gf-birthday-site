@@ -58,10 +58,6 @@ const SITE_CONFIG = {
     title: "tonight's spell",
     hint: "pick as many as you like, then send it straight to my phone.",
  
-    // Your number, with country code, no spaces or dashes — e.g. "+40712345678".
-    // Leave it as "" and the send buttons stay switched off until you add it.
-    phoneNumber: "+40783111317",
- 
     // The sentence the message opens with — the picks get added after it.
     messageIntro: "Tonight I'm in the mood for:",
  

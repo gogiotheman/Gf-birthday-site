@@ -25,6 +25,12 @@
 
   <div class="chip-list" id="chipList"></div>
 
+  <div class="recipient-field">
+    <label for="recipientNumber" class="custom-option-label">WhatsApp number with country code</label>
+    <input id="recipientNumber" type="tel" inputmode="tel" autocomplete="tel" placeholder="+40 712 345 678" aria-describedby="phoneHint">
+    <p class="phone-hint" id="phoneHint">Enter a recipient number to enable sending.</p>
+  </div>
+
   <div class="custom-option hidden" id="customOption">
     <label for="customIdeaInput" class="custom-option-label">something else</label>
     <input id="customIdeaInput" type="text" maxlength="80" placeholder="tell me what you had in mind...">
@@ -36,10 +42,6 @@
     <a class="btn-send is-disabled" id="sendWhatsapp" target="_blank" rel="noopener">send on WhatsApp</a>
     <button class="send-alt" id="sendSms" disabled>or send as a text message</button>
   </div>
-
-  <p class="no-phone-hint hidden" id="noPhoneHint">
-    Add your number in config.js (activities.phoneNumber) to switch sending on.
-  </p>
 
 </main>
 

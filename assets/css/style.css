@@ -790,6 +790,14 @@ body.modal-open { overflow: hidden; }
   margin-top: 2px;
 }
 
+.recipient-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 2px;
+}
+
 .custom-option-label {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
@@ -797,7 +805,8 @@ body.modal-open { overflow: hidden; }
   color: var(--text-low);
 }
 
-.custom-option input {
+.custom-option input,
+.recipient-field input {
   width: min(100%, 420px);
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(185, 156, 224, 0.35);
@@ -807,7 +816,8 @@ body.modal-open { overflow: hidden; }
   font: inherit;
 }
 
-.custom-option input:focus {
+.custom-option input:focus,
+.recipient-field input:focus {
   outline: none;
   border-color: var(--brass);
   box-shadow: 0 0 0 3px rgba(203, 163, 92, 0.12);
@@ -873,6 +883,12 @@ body.modal-open { overflow: hidden; }
   border: 1px dashed rgba(203, 163, 92, 0.4);
   border-radius: 2px;
   padding: 14px 16px;
+}
+
+.phone-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-low);
 }
 
 /* =======================================================================
