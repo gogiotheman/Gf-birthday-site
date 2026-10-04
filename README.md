@@ -1,4 +1,8 @@
-# her birthday site — work in progress
+# Gf-birthday-site
+
+A small site for my girlfriend's birthday.
+
+## Project status
 
 **Built so far:** the greeting page, plus the overall look, navigation and
 folder structure the rest of the site will share.
