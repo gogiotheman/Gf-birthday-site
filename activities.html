@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>tonight's spell</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231d1533'/%3E%3Cpath d='M58 20a32 32 0 1 0 22 30 24 24 0 0 1-22-30z' fill='%23cba35c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="activities">
+
+<div class="starfield" id="starfield"></div>
+<div id="nav-placeholder"></div>
+
+<main class="page activities-wrap">
+
+  <div class="greeting-intro">
+    <p class="eyebrow" id="actEyebrow">no pressure, just pick</p>
+    <h1 class="her-name" id="actTitle">tonight's spell</h1>
+    <p class="tagline" id="actHint">pick as many as you like, then send it straight to my phone.</p>
+  </div>
+
+  <div class="chip-list" id="chipList"></div>
+
+  <div class="custom-option hidden" id="customOption">
+    <label for="customIdeaInput" class="custom-option-label">something else</label>
+    <input id="customIdeaInput" type="text" maxlength="80" placeholder="tell me what you had in mind...">
+  </div>
+
+  <p class="message-preview" id="messagePreview" aria-live="polite"></p>
+
+  <div class="send-row" id="sendRow">
+    <a class="btn-send is-disabled" id="sendWhatsapp" target="_blank" rel="noopener">send on WhatsApp</a>
+    <button class="send-alt" id="sendSms" disabled>or send as a text message</button>
+  </div>
+
+  <p class="no-phone-hint hidden" id="noPhoneHint">
+    Add your number in config.js (activities.phoneNumber) to switch sending on.
+  </p>
+
+</main>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  ensureSiteAccess();
+  buildStarfield("starfield", 45);
+  injectNav("activities");
+  initActivitiesPage();
+</script>
+</body>
+</html>

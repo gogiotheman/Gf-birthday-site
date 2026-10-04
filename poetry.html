@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>daily verse</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231d1533'/%3E%3Cpath d='M58 20a32 32 0 1 0 22 30 24 24 0 0 1-22-30z' fill='%23cba35c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,500;1,400;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="poetry">
+
+<div class="starfield" id="starfield"></div>
+<div id="nav-placeholder"></div>
+
+<main class="page stub-page">
+  <svg class="stub-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 4c-5 0-9.5 3.4-10.8 8.2C7.4 15.6 8 18 8 18s2.7.4 5.8-1.2C18.2 14.8 20 10 19 4z"></path>
+    <path d="M8.5 18 15 11.5"></path>
+  </svg>
+  <h1>a verse a day</h1>
+  <p>One small poem for each day, pulled at random from a growing collection. Coming soon.</p>
+  <p class="stub-tag">next page to build</p>
+</main>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  ensureSiteAccess();
+  buildStarfield("starfield", 45);
+  injectNav("poetry");
+</script>
+</body>
+</html>

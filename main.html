@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>our songs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231d1533'/%3E%3Cpath d='M58 20a32 32 0 1 0 22 30 24 24 0 0 1-22-30z' fill='%23cba35c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="main">
+
+<div class="starfield" id="starfield"></div>
+<div id="nav-placeholder"></div>
+
+<main class="page main-wrap">
+
+  <div class="greeting-intro">
+    <p class="eyebrow" id="mainEyebrow">a few we keep replaying</p>
+    <h1 class="her-name" id="mainTitle">our songs</h1>
+  </div>
+
+  <div class="carousel">
+    <div class="carousel-track" id="carouselTrack"></div>
+    <div class="carousel-controls">
+      <button class="carousel-arrow" id="prevBtn" aria-label="Previous video">
+        <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"></path></svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-arrow" id="nextBtn" aria-label="Next video">
+        <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"></path></svg>
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  ensureSiteAccess();
+  buildStarfield("starfield", 45);
+  injectNav("main");
+  initMainPage();
+</script>
+</body>
+</html>

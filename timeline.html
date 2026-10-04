@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>our years</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231d1533'/%3E%3Cpath d='M58 20a32 32 0 1 0 22 30 24 24 0 0 1-22-30z' fill='%23cba35c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="timeline">
+
+<div class="starfield" id="starfield"></div>
+<div id="nav-placeholder"></div>
+
+<main class="page timeline-wrap">
+
+  <div class="greeting-intro">
+    <p class="eyebrow" id="timelineEyebrow">month by month</p>
+    <h1 class="her-name" id="timelineTitle">our years</h1>
+  </div>
+
+  <div class="year-nav">
+    <button class="carousel-arrow" id="prevYearBtn" aria-label="Previous year">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"></path></svg>
+    </button>
+    <span class="year-display" id="yearDisplay">2026</span>
+    <button class="carousel-arrow" id="nextYearBtn" aria-label="Next year">
+      <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"></path></svg>
+    </button>
+  </div>
+
+  <div class="month-grid" id="monthGrid"></div>
+
+  <p class="timeline-hint">tap a month to add a photo — it's saved right here in this browser.</p>
+
+</main>
+
+<input type="file" accept="image/*" id="photoInput" style="display:none">
+
+<div class="modal-overlay" id="photoModal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13"></path></svg>
+    </button>
+    <p class="modal-month" id="modalMonthLabel"></p>
+    <img class="modal-image" id="modalImage" alt="">
+    <textarea class="modal-note" id="modalNote" rows="2" placeholder="add a note about this month..."></textarea>
+    <div class="modal-actions">
+      <button class="modal-link" id="modalReplace">replace photo</button>
+      <button class="modal-link modal-link-remove" id="modalRemove">remove</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  ensureSiteAccess();
+  buildStarfield("starfield", 45);
+  injectNav("timeline");
+  initTimelinePage();
+</script>
+</body>
+</html>
